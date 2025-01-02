@@ -1,0 +1,12 @@
+--- original_file.zig   2023-10-01 12:00:00.000000000 +0000
++++ modified_file.zig   2023-10-01 12:00:00.000000000 +0000
+@@ -3,7 +3,8 @@
+ pub const page_size = switch (builtin.cpu.arch) {
+     .wasm32, .wasm64 => 64 * 1024,
+     .aarch64 => switch (builtin.os.tag) {
+-        .macos, .ios, .watchos, .tvos, .visionos => 16 * 1024,
++        .macos, .ios, .watchos, .tvos, .visionos => 16 * 1024,
++        .linux => 16384,
+         else => 4 * 1024,
+     },
+     .sparc64 => 8 * 1024,

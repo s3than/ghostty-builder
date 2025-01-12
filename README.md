@@ -1,8 +1,14 @@
-# Ghostty Asahi
+# Ghostty Builder
 
-This container is a simple way to build the Ghostty Terminal for Asahi Linux.
+This container is a simple way to build the Ghostty Terminal for Linux.
 
-## Why?
+## Ghostty
+
+Ghostty is a terminal emulator that is designed to be fast and lightweight. It is written in Zig. [Ghostty](https://ghostty.org/docs)
+
+## Asahi Linux and Ghostty
+
+### Page Size issues?
 
 `Zig's std lib always assumes 4 KiB pages on Linux running on aarch64.`
 
@@ -16,10 +22,14 @@ This container includes a diff for the `build.zig` and `mem.zig` files to allow 
 
 ## Building
 
-On an Asahi system you can use the `podman` command to build the container.
+On an Fedora system you can use the `podman` command to build the container.
 
 ```bash
-podman build -t ghostty  --output out .
+podman build -t ghostty  --output out -f amd64/Dockerfile .
+```
+Or for Ashai Linux
+```bash
+podman build -t ghostty  --output out -f asahi-build/Dockerfile asahi-build
 ```
 
 Once the `binary` is built you can move it to a location in your path. Configuration at this point is as per the Ghostty docs..

@@ -1,6 +1,6 @@
 FROM fedora AS stage1
 
-ENV GHOSTTY_VERSION=1.0.1
+ENV GHOSTTY_VERSION=1.1.0
 
 WORKDIR /app
 
@@ -12,5 +12,5 @@ RUN curl -L https://github.com/ghostty-org/ghostty/archive/refs/tags/v${GHOSTTY_
 RUN cd ghostty-${GHOSTTY_VERSION} && zig build -Doptimize=ReleaseFast
 
 FROM scratch AS export-stage
-ENV GHOSTTY_VERSION=1.0.1
+ENV GHOSTTY_VERSION=1.1.0
 COPY --from=stage1 /app/ghostty-${GHOSTTY_VERSION}/zig-out/bin/ghostty .

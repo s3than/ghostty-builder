@@ -1,6 +1,6 @@
 FROM fedora AS stage1
 
-ENV GHOSTTY_VERSION=1.0.1
+ENV GHOSTTY_VERSION=1.1.0
 
 WORKDIR /app
 
@@ -23,5 +23,5 @@ RUN patch /app/ghostty-${GHOSTTY_VERSION}/build.zig < /app/ghostty-${GHOSTTY_VER
 RUN cd ghostty-${GHOSTTY_VERSION} && zig build -Doptimize=ReleaseFast
 
 FROM scratch AS export-stage
-ENV GHOSTTY_VERSION=1.0.1
+ENV GHOSTTY_VERSION=1.1.0
 COPY --from=stage1 /app/ghostty-${GHOSTTY_VERSION}/zig-out/bin/ghostty .
